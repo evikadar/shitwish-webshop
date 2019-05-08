@@ -3,7 +3,7 @@ package com.norestfortheapi.webshop.shitwishfrontend.controller;
 import com.norestfortheapi.webshop.shitwishfrontend.model.Cart;
 import com.norestfortheapi.webshop.shitwishfrontend.model.Product;
 import com.norestfortheapi.webshop.shitwishfrontend.model.WishUser;
-import com.norestfortheapi.webshop.shitwishfrontend.service.ServiceCaller;
+import com.norestfortheapi.webshop.shitwishfrontend.service.ProductServiceCaller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -28,16 +28,11 @@ public class ShitwishFrontendController {
     }
 
     @Autowired
-    private ServiceCaller serviceCaller;
+    private ProductServiceCaller productServiceCaller;
 
     @GetMapping("/")
     public String displayPage(Model model, @ModelAttribute WishUser user, @ModelAttribute Cart cart) {
-        List<Product> products = serviceCaller.getProductList();
-        try {
-            cart = serviceCaller.getCart(user.getId());
-        } catch (NullPointerException e) {
-            e.printStackTrace();
-        }
+        List<Product> products = productServiceCaller.getProductList();
         model.addAttribute("products", products);
         model.addAttribute("cart", cart);
         return "index";

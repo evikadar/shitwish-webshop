@@ -25,10 +25,6 @@ public class ProductServiceCaller {
     @Value("${url.products}")
     private String productUrl;
 
-
-
-
-
     public List<Product> getProductList() {
 
         try {
