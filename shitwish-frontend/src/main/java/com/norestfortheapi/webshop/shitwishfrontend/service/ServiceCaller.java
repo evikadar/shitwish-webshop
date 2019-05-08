@@ -56,11 +56,11 @@ public class ServiceCaller {
 
     public Product getProduct(long id) {
         try {
-            ResponseEntity<Product> wishUserResponseEntity = restTemplate.exchange(baseUrl + productUrl + "/" + id,
+            ResponseEntity<Product> productResponseEntity = restTemplate.exchange(baseUrl + productUrl + "/" + id,
                     HttpMethod.GET
                     , null, new ParameterizedTypeReference<Product>() {
                     });
-            return wishUserResponseEntity.getBody();
+            return productResponseEntity.getBody();
         } catch (Exception e) {
             log.error(e.getMessage());
             return null;
@@ -82,11 +82,11 @@ public class ServiceCaller {
 
     public Cart getCart(long id) {
         try {
-            ResponseEntity<Cart> wishUserResponseEntity = restTemplate.exchange(baseUrl + cartUrl + "/" + id,
+            ResponseEntity<Cart> cartResponseEntity = restTemplate.exchange(baseUrl + cartUrl + "/" + id,
                     HttpMethod.GET
                     , null, new ParameterizedTypeReference<Cart>() {
                     });
-            return wishUserResponseEntity.getBody();
+            return cartResponseEntity.getBody();
         } catch (Exception e) {
             log.error(e.getMessage());
             return null;
