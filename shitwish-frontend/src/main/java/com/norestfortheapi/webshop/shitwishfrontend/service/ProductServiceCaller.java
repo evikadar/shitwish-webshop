@@ -1,4 +1,5 @@
 package com.norestfortheapi.webshop.shitwishfrontend.service;
+
 import com.norestfortheapi.webshop.shitwishfrontend.model.Product;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,6 +26,12 @@ public class ProductServiceCaller {
     @Value("${url.products}")
     private String productUrl;
 
+    @Value("${url.users}")
+    private String userUrl;
+
+    @Value("${url.carts}")
+    private String cartUrl;
+
     public List<Product> getProductList() {
 
         try {
@@ -47,19 +54,14 @@ public class ProductServiceCaller {
 
     public Product getProduct(long id) {
         try {
-            ResponseEntity<Product> wishUserResponseEntity = restTemplate.exchange(baseUrl + productUrl + "/" + id,
+            ResponseEntity<Product> productResponseEntity = restTemplate.exchange(baseUrl + productUrl + "/" + id,
                     HttpMethod.GET
                     , null, new ParameterizedTypeReference<Product>() {
                     });
-            return wishUserResponseEntity.getBody();
+            return productResponseEntity.getBody();
         } catch (Exception e) {
             log.error(e.getMessage());
             return null;
         }
     }
-
-
-
-
-
 }
