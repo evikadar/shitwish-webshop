@@ -62,7 +62,7 @@
 }
 
 .jumbotron {
-    background: url("/img/jumbotron_cover.jpg") rgba(0, 0, 0, 0.6);
+    background: url("/img/shitwish_background.jpeg") rgba(0, 0, 0, 0.6);
     background-blend-mode: overlay;
     background-size: cover;
     opacity: 0.9;
