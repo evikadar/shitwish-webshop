@@ -34,21 +34,21 @@
     Jumbotron
 </div>
 <div class="container">
-    <form action="/login" method="post">
+    <form action="/login" method="post" th:object="${user}">
         <div class="input-group">
             <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-            <input id="username" type="text" class="form-control" name="username" placeholder="User name">
+            <input id="username" type="text" class="form-control" th:field="*{name}" name="username" placeholder="User name">
         </div>
         <br>
 
         <div class="input-group">
             <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
-            <input id="password" type="password" class="form-control" name="password" placeholder="Password">
+            <input id="password" type="password" class="form-control" th:field="*{password}" name="password" placeholder="Password">
         </div>
         <br>
-        <div th:if="${wrongLogin != null}" th:text="${wrongLogin}">
-            Wrong login
-        </div>
+        <!--<div th:if="${wrongLogin != null}" th:text="${wrongLogin}">-->
+            <!--Wrong login-->
+        <!--</div>-->
         <button type="submit" class="btn btn-dark">Login</button>
     </form>
 </div>
