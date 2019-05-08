@@ -17,7 +17,7 @@ import java.util.List;
 
 @Service
 @Slf4j
-public class ServiceCaller {
+public class ProductServiceCaller {
 
     @Autowired
     private RestTemplate restTemplate;

@@ -17,24 +17,21 @@ import java.util.List;
 @Slf4j
 public class ProductController {
 
-
-
     @Autowired
     ProductService productService;
 
     @Autowired
     private Environment environment;
 
-    @GetMapping("/products/{id}")
+    @GetMapping("/{id}")
     public Product getProduct(@PathVariable Long id) {
         return productService.getProduct(id);
     }
 
-    @GetMapping("/products")
+    @GetMapping("/")
     public List<Product> getEveryProduct() {
         return productService.getEveryProduct();
     }
-
 
 }
 
