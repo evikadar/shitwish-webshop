@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpMethod;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
@@ -39,5 +40,13 @@ public class UserServiceCaller {
     public void postUser(WishUser user) {
         ResponseEntity<WishUser> response = restTemplate.postForEntity(baseUrl+userUrl, user, WishUser.class);
 
+    }
+
+    public boolean authenticateUser(WishUser loginUser) {
+        HttpStatus httpStatus = restTemplate.postForEntity(baseUrl + userUrl + "/authentication", loginUser, WishUser.class).getStatusCode();
+        if (httpStatus.equals(HttpStatus.ACCEPTED)) {
+            return true;
+        }
+        return false;
     }
 }
