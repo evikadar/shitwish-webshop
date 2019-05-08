@@ -37,9 +37,12 @@ public class UserServiceCaller {
         }
     }
 
-    public void postUser(WishUser user) {
-        ResponseEntity<WishUser> response = restTemplate.postForEntity(baseUrl+userUrl, user, WishUser.class);
-
+    public boolean postUser(WishUser user) {
+        HttpStatus httpStatus = restTemplate.postForEntity(baseUrl + userUrl, user, WishUser.class).getStatusCode();
+        if (httpStatus.equals(HttpStatus.CREATED)) {
+            return true;
+        }
+        return false;
     }
 
     public boolean authenticateUser(WishUser loginUser) {
