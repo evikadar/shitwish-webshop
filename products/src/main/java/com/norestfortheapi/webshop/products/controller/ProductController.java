@@ -28,7 +28,7 @@ public class ProductController {
         return productService.getProduct(id);
     }
 
-    @GetMapping
+    @GetMapping("/")
     public List<Product> getEveryProduct() {
         return productService.getEveryProduct();
     }
