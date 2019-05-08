@@ -1,5 +1,4 @@
 package com.norestfortheapi.webshop.shitwishfrontend.service;
-
 import com.norestfortheapi.webshop.shitwishfrontend.model.Product;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,7 +14,7 @@ import java.util.List;
 
 @Service
 @Slf4j
-public class ServiceCaller {
+public class ProductServiceCaller {
 
     @Autowired
     private RestTemplate restTemplate;
@@ -30,18 +29,37 @@ public class ServiceCaller {
 
         try {
             ResponseEntity<List<Product>> productList = restTemplate.exchange(baseUrl + productUrl, HttpMethod.GET,
-                    null, new ParameterizedTypeReference<List<Product>>(){});
+                    null, new ParameterizedTypeReference<List<Product>>() {
+                    });
             return productList.getBody();
-        } catch (Exception e){
+        } catch (Exception e) {
             log.error(e.getMessage());
             List<Product> products = new ArrayList<>();
-            Product firstCoffeeThingy = Product.builder().id(1L).name("First").price(10.00).description("Awesome").imagePath("1").build();
-            Product secondCoffeeThingy = Product.builder().id(2L).name("Second").price(10.00).description("Awesome").imagePath("2").build();
+            Product firstCoffeeThingy =
+                    Product.builder().id(1L).name("First").price(10.00).description("Awesome").imagePath("1").build();
+            Product secondCoffeeThingy =
+                    Product.builder().id(2L).name("Second").price(10.00).description("Awesome").imagePath("2").build();
             products.add(firstCoffeeThingy);
             products.add(secondCoffeeThingy);
             return products;
         }
-
     }
+
+    public Product getProduct(long id) {
+        try {
+            ResponseEntity<Product> wishUserResponseEntity = restTemplate.exchange(baseUrl + productUrl + "/" + id,
+                    HttpMethod.GET
+                    , null, new ParameterizedTypeReference<Product>() {
+                    });
+            return wishUserResponseEntity.getBody();
+        } catch (Exception e) {
+            log.error(e.getMessage());
+            return null;
+        }
+    }
+
+
+
+
 
 }
