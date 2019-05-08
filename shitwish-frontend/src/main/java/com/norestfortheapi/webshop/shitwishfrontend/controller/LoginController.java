@@ -21,6 +21,6 @@ public class LoginController {
 
     @PostMapping
     public String login(@ModelAttribute WishUser user) {
-        return "index";
+        return "redirect:/";
     }
 }

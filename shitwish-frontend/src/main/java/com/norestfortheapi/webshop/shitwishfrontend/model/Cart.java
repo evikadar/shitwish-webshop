@@ -19,4 +19,8 @@ public class Cart {
     // product, quantity
     private HashMap<Product, Integer> products;
     private CartStatus status;
+
+    public int getSumProducts() {
+        return 0;
+    }
 }
