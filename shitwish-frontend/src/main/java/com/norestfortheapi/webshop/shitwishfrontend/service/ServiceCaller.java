@@ -54,6 +54,19 @@ public class ServiceCaller {
         }
     }
 
+    public Product getProduct(long id) {
+        try {
+            ResponseEntity<Product> wishUserResponseEntity = restTemplate.exchange(baseUrl + productUrl + "/" + id,
+                    HttpMethod.GET
+                    , null, new ParameterizedTypeReference<Product>() {
+                    });
+            return wishUserResponseEntity.getBody();
+        } catch (Exception e) {
+            log.error(e.getMessage());
+            return null;
+        }
+    }
+
     public WishUser getUser(long id) {
         try {
             ResponseEntity<WishUser> wishUserResponseEntity = restTemplate.exchange(baseUrl + userUrl + "/" + id,

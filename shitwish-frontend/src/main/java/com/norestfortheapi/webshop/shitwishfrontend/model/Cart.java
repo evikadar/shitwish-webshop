@@ -15,8 +15,8 @@ public class Cart {
     private long id;
     private long userId;
     // productID, quantity
-    private HashMap<Integer, Integer> productIDs;
-    // productID, quantity
+    private HashMap<Long, Integer> productIDs;
+    // product, quantity
     private HashMap<Product, Integer> products;
     private CartStatus status;
 }
