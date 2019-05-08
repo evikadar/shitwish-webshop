@@ -35,7 +35,6 @@ public class CartService {
             products.remove(cartItem);
             cart.setProducts(products);
         }
-
     }
 
     public Cart addProductToCart(Long id, Long productId) {
