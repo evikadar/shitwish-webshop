@@ -151,3 +151,7 @@ nav.navbar {
     padding: 5% 10%;
     background: #800000;
 }
+
+img {
+    max-width: 350px;
+}

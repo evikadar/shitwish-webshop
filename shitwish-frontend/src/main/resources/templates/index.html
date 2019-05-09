@@ -117,14 +117,14 @@
                 <form method="POST" class="h-100">
                     <div class="card h-100">
                         <img class="" src="http://placehold.it/400x250/000/fff"
-                             th:attr="src='/img/product_' + ${prod.id} + '.jpg'" alt=""/>
+                             th:attr="src=${prod.getImagePath()}"/>
                         <div class="card-header">
                             <h4 class="card-title" th:text="${prod.name}">Product name</h4>
                             <p class="card-text" th:text="${prod.description}">Product description... </p>
                         </div>
                         <div class="card-body">
                             <div class="card-text">
-                                <p class="lead" th:text="${prod.getPrice()}">100 USD</p>
+                                <p class="lead" th:text="${prod.getPrice()} + ' USD'">100 USD</p>
                             </div>
                             <div class="card-text">
                                 <button class="btn btn-dark" type="submit">Add to cart</button>
