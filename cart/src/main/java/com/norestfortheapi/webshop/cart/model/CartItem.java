@@ -7,6 +7,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.math.BigDecimal;
 
 @Data
 @NoArgsConstructor
@@ -22,6 +23,8 @@ public class CartItem {
     private Long productId;
 
     private int quantity;
+
+    private BigDecimal price;
 
     @Id
     @ManyToOne

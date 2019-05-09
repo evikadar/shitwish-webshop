@@ -37,24 +37,25 @@ public class CartService {
         }
     }
 
-    public Cart addProductToCart(Long id, Long productId) {
+    public Cart addProductToCart(Long id, CartItem productToAdd) {
         Cart cart = cartRepository.getOne(id);
         Optional<CartItem> optionalCartItem = cart.getProducts().stream()
-                .filter(product -> product.getProductId().equals(productId))
+                .filter(product -> product.getProductId().equals(productToAdd.getProductId()))
                 .findFirst();
         if (optionalCartItem.isPresent()) {
             CartItem cartItem = optionalCartItem.get();
             increaseProductQuantity(cartItem);
         } else {
-            addNewProductToCart(cart, productId);
+            addNewProductToCart(cart, productToAdd);
         }
         cartRepository.save(cart);
         return cart;
     }
 
-    private void addNewProductToCart(Cart cart, Long productId) {
+    private void addNewProductToCart(Cart cart, CartItem productToAdd) {
         CartItem cartItem = CartItem.builder()
-                .productId(productId)
+                .productId(productToAdd.getProductId())
+                .price(productToAdd.getPrice())
                 .cart(cart)
                 .quantity(1)
                 .build();

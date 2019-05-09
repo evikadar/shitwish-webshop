@@ -1,11 +1,11 @@
 package com.norestfortheapi.webshop.cart.controller;
 
 import com.norestfortheapi.webshop.cart.model.Cart;
+import com.norestfortheapi.webshop.cart.model.CartItem;
 import com.norestfortheapi.webshop.cart.repository.CartRepository;
 import com.norestfortheapi.webshop.cart.service.CartService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.converter.HttpMessageNotWritableException;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
@@ -34,10 +34,10 @@ public class CartController {
     @PostMapping("/{id}/products")
     public Cart addProductToCart(
             @PathVariable("id") Long id,
-            @RequestParam("productId") Long productId
-    ) {
+            @RequestBody CartItem cartItem
+            ) {
         try {
-            return cartService.addProductToCart(id, productId);
+            return cartService.addProductToCart(id, cartItem);
         } catch (EntityNotFoundException e) {
             throw new ResponseStatusException(
                     HttpStatus.BAD_REQUEST, "No available cart by this ID.");
