@@ -7,4 +7,6 @@ public interface ShitwishUserRepository extends JpaRepository<ShitwishUser, Stri
 
     ShitwishUser getById(Long userId);
 
+    ShitwishUser findByUserName(String username);
+
 }

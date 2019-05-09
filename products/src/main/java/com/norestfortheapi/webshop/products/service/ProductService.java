@@ -89,7 +89,7 @@ public class ProductService {
     }
 
     public List<Product> getEveryProduct() {
-        // addNewProducts();
+//         addNewProducts();
         List<Product> productsSql = productRepository.findAll();
         return productsSql;
     }

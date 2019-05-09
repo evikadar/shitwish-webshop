@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.server.ResponseStatusException;
 
 @RestController
 @Slf4j
@@ -21,6 +22,14 @@ public class UserController {
     @GetMapping("/{id}")
     public ShitwishUser getUserById(@PathVariable("id") Long userId) {
         return userService.getUserById(userId);
+    }
+
+    @PostMapping("/authentication")
+    @ResponseStatus(HttpStatus.ACCEPTED)
+    public void authenticateUser(@RequestBody ShitwishUser user){
+        if (!userService.authenticateUser(user)) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Username os password is not correct!");
+        }
     }
 
     @PostMapping("/")

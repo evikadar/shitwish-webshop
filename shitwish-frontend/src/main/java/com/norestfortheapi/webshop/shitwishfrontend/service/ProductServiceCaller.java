@@ -1,8 +1,6 @@
 package com.norestfortheapi.webshop.shitwishfrontend.service;
 
-import com.norestfortheapi.webshop.shitwishfrontend.model.Cart;
 import com.norestfortheapi.webshop.shitwishfrontend.model.Product;
-import com.norestfortheapi.webshop.shitwishfrontend.model.WishUser;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -17,7 +15,7 @@ import java.util.List;
 
 @Service
 @Slf4j
-public class ServiceCaller {
+public class ProductServiceCaller {
 
     @Autowired
     private RestTemplate restTemplate;
@@ -56,41 +54,14 @@ public class ServiceCaller {
 
     public Product getProduct(long id) {
         try {
-            ResponseEntity<Product> wishUserResponseEntity = restTemplate.exchange(baseUrl + productUrl + "/" + id,
+            ResponseEntity<Product> productResponseEntity = restTemplate.exchange(baseUrl + productUrl + "/" + id,
                     HttpMethod.GET
                     , null, new ParameterizedTypeReference<Product>() {
                     });
-            return wishUserResponseEntity.getBody();
+            return productResponseEntity.getBody();
         } catch (Exception e) {
             log.error(e.getMessage());
             return null;
         }
     }
-
-    public WishUser getUser(long id) {
-        try {
-            ResponseEntity<WishUser> wishUserResponseEntity = restTemplate.exchange(baseUrl + userUrl + "/" + id,
-                    HttpMethod.GET
-                    , null, new ParameterizedTypeReference<WishUser>() {
-                    });
-            return wishUserResponseEntity.getBody();
-        } catch (Exception e) {
-            log.error(e.getMessage());
-            return null;
-        }
-    }
-
-    public Cart getCart(long id) {
-        try {
-            ResponseEntity<Cart> wishUserResponseEntity = restTemplate.exchange(baseUrl + cartUrl + "/" + id,
-                    HttpMethod.GET
-                    , null, new ParameterizedTypeReference<Cart>() {
-                    });
-            return wishUserResponseEntity.getBody();
-        } catch (Exception e) {
-            log.error(e.getMessage());
-            return null;
-        }
-    }
-
 }

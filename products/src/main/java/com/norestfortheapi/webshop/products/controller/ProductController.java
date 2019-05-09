@@ -17,8 +17,6 @@ import java.util.List;
 @Slf4j
 public class ProductController {
 
-
-
     @Autowired
     ProductService productService;
 
@@ -34,7 +32,6 @@ public class ProductController {
     public List<Product> getEveryProduct() {
         return productService.getEveryProduct();
     }
-
 
 }
 
