@@ -4,6 +4,7 @@ Webshop with 6 microservices: products, users, carts, service-registry, frontend
 
 To check it on heroku, follow this link:
 http://shitwish.herokuapp.com/
+Warning: Heroku might take time to come to life! Especially the cart service is long to load, if it's not working at first, please check a few minutes later.
 
 To make it work on your local computer, please follow these steps:
 
